@@ -14,7 +14,7 @@ data:
       type: prometheus
       access: proxy
       url: https://cloud.weave.works/api/prom
-      isDefault: false
+      isDefault: true
       editable: true
       version: 1
       basicAuth: true
