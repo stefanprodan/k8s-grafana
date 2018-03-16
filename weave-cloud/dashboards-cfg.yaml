@@ -244,12 +244,10 @@ data:
           "mappingType": 1,
           "mappingTypes": [
             {
-              "$$hashKey": "object:439",
               "name": "value to text",
               "value": 1
             },
             {
-              "$$hashKey": "object:440",
               "name": "range to text",
               "value": 2
             }
@@ -277,7 +275,6 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "$$hashKey": "object:260",
               "expr": "max (rate(apiserver_request_latencies_summary_sum{verb!=\"WATCH\"}[5m]))  / \nmax (rate(apiserver_request_latencies_summary_count{verb!=\"WATCH\"}[5m]))",
               "format": "time_series",
               "intervalFactor": 2,
@@ -292,7 +289,6 @@ data:
           "valueFontSize": "80%",
           "valueMaps": [
             {
-              "$$hashKey": "object:442",
               "op": "=",
               "text": "0",
               "value": "null"
@@ -331,12 +327,10 @@ data:
           "mappingType": 1,
           "mappingTypes": [
             {
-              "$$hashKey": "object:513",
               "name": "value to text",
               "value": 1
             },
             {
-              "$$hashKey": "object:514",
               "name": "range to text",
               "value": 2
             }
@@ -364,7 +358,6 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "$$hashKey": "object:260",
               "expr": "sum(rate(apiserver_request_count{code=~\"5..\"}[1h]))",
               "format": "time_series",
               "intervalFactor": 2,
@@ -379,7 +372,6 @@ data:
           "valueFontSize": "80%",
           "valueMaps": [
             {
-              "$$hashKey": "object:516",
               "op": "=",
               "text": "0",
               "value": "null"
@@ -421,7 +413,7 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 4,
             "w": 6,
             "x": 0,
             "y": 6
@@ -505,7 +497,7 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 4,
             "w": 6,
             "x": 6,
             "y": 6
@@ -589,7 +581,7 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 4,
             "w": 6,
             "x": 12,
             "y": 6
@@ -673,7 +665,7 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 4,
             "w": 6,
             "x": 18,
             "y": 6
@@ -757,10 +749,10 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 3,
             "w": 6,
             "x": 0,
-            "y": 11
+            "y": 10
           },
           "hideTimeOverride": false,
           "id": 19,
@@ -842,10 +834,10 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 3,
             "w": 6,
             "x": 6,
-            "y": 11
+            "y": 10
           },
           "hideTimeOverride": false,
           "id": 14,
@@ -927,10 +919,10 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 3,
             "w": 6,
             "x": 12,
-            "y": 11
+            "y": 10
           },
           "hideTimeOverride": false,
           "id": 12,
@@ -1012,10 +1004,10 @@ data:
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 5,
+            "h": 3,
             "w": 6,
             "x": 18,
-            "y": 11
+            "y": 10
           },
           "hideTimeOverride": false,
           "id": 23,
@@ -1083,7 +1075,7 @@ data:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 16
+            "y": 13
           },
           "id": 29,
           "panels": [],
@@ -1113,7 +1105,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 0,
-            "y": 17
+            "y": 14
           },
           "id": 8,
           "interval": null,
@@ -1195,7 +1187,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 6,
-            "y": 17
+            "y": 14
           },
           "id": 7,
           "interval": null,
@@ -1277,7 +1269,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 12,
-            "y": 17
+            "y": 14
           },
           "id": 9,
           "interval": null,
@@ -1359,7 +1351,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 18,
-            "y": 17
+            "y": 14
           },
           "id": 10,
           "interval": null,
@@ -1441,7 +1433,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 0,
-            "y": 21
+            "y": 18
           },
           "id": 20,
           "interval": null,
@@ -1524,7 +1516,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 6,
-            "y": 21
+            "y": 18
           },
           "hideTimeOverride": false,
           "id": 18,
@@ -1609,7 +1601,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 12,
-            "y": 21
+            "y": 18
           },
           "hideTimeOverride": false,
           "id": 21,
@@ -1694,7 +1686,7 @@ data:
             "h": 4,
             "w": 6,
             "x": 18,
-            "y": 21
+            "y": 18
           },
           "hideTimeOverride": false,
           "id": 22,
@@ -1762,12 +1754,12 @@ data:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 25
+            "y": 22
           },
           "id": 30,
           "panels": [],
           "repeat": null,
-          "title": "APIs Activity",
+          "title": "APIs",
           "type": "row"
         },
         {
@@ -1785,7 +1777,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 26
+            "y": 23
           },
           "height": "",
           "id": 15,
@@ -1816,7 +1808,6 @@ data:
           "steppedLine": true,
           "targets": [
             {
-              "$$hashKey": "object:645",
               "expr": "sum by(code) (rate(apiserver_request_count{code!=\"0\"}[5m]))",
               "format": "time_series",
               "interval": "10s",
@@ -1880,7 +1871,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 33
+            "y": 30
           },
           "height": "",
           "id": 31,
@@ -1911,7 +1902,6 @@ data:
           "steppedLine": true,
           "targets": [
             {
-              "$$hashKey": "object:264",
               "expr": "max by (resource, verb) (rate(apiserver_request_latencies_summary_sum{verb!~\"WATCH|CONNECT\"}[5m]))  / \nmax by (resource, verb) (rate(apiserver_request_latencies_summary_count{verb!~\"WATCH|CONNECT\"}[5m]))\n> 10",
               "format": "time_series",
               "interval": "10s",
@@ -1943,7 +1933,6 @@ data:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:518",
               "format": "ns",
               "label": "",
               "logBase": 1,
@@ -1952,7 +1941,6 @@ data:
               "show": true
             },
             {
-              "$$hashKey": "object:519",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1977,7 +1965,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 40
+            "y": 37
           },
           "height": "",
           "id": 26,
@@ -2097,5 +2085,5 @@ data:
       "timezone": "",
       "title": "Control Plane",
       "uid": "2bG3Qsgmz",
-      "version": 2
+      "version": 4
     }
