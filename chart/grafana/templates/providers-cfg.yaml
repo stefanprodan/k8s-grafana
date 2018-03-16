@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-providers
+  name: {{ template "grafana.fullname" . }}-providers
 data:
   providers.yaml: |+
     apiVersion: 1
