@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:1085",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -102,7 +103,7 @@
         }
       ],
       "thresholds": "0,1",
-      "title": "Control Plane UP",
+      "title": "Control Plane",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -129,9 +130,9 @@
       "colorBackground": false,
       "colorValue": true,
       "colors": [
-        "rgba(245, 54, 54, 0.9)",
+        "rgba(50, 172, 45, 0.97)",
         "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
+        "rgba(245, 54, 54, 0.9)"
       ],
       "datasource": "prometheus",
       "decimals": null,
@@ -149,7 +150,7 @@
         "x": 6,
         "y": 1
       },
-      "id": 6,
+      "id": 34,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -186,7 +187,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(increase(kube_pod_container_status_restarts_total[5m]) > 5)",
+          "$$hashKey": "object:316",
+          "expr": "sum(kube_node_status_condition{condition=\"Ready\",status!=\"true\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -194,91 +196,8 @@
           "step": 600
         }
       ],
-      "thresholds": "0,2",
-      "title": "Crash looping Pods",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "0",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "rgba(50, 172, 45, 0.97)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(245, 54, 54, 0.9)"
-      ],
-      "datasource": "prometheus",
-      "decimals": null,
-      "format": "ns",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 1
-      },
-      "id": 32,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "max (rate(apiserver_request_latencies_summary_sum{verb!=\"WATCH\"}[5m]))  / \nmax (rate(apiserver_request_latencies_summary_count{verb!=\"WATCH\"}[5m]))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "refId": "A",
-          "step": 600
-        }
-      ],
-      "thresholds": "100000,200000",
-      "title": "Max API Latency",
+      "thresholds": "1,2",
+      "title": "Nodes Not Ready",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -312,10 +231,10 @@
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 18,
+        "x": 12,
         "y": 1
       },
-      "id": 33,
+      "id": 35,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -352,7 +271,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(apiserver_request_count{code=~\"5..\"}[1h]))",
+          "$$hashKey": "object:316",
+          "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\",status=\"true\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -360,12 +280,99 @@
           "step": 600
         }
       ],
-      "thresholds": "5,10",
-      "title": "API Calls Errors",
+      "thresholds": "1,2",
+      "title": "Nodes Memory Pressure",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "op": "=",
+          "text": "0",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "prometheus",
+      "decimals": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:584",
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "$$hashKey": "object:585",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "$$hashKey": "object:494",
+          "expr": "count(increase(kube_pod_container_status_restarts_total[5m]) > 1)",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 600
+        }
+      ],
+      "thresholds": "0,2",
+      "title": "Crash Looping Pods",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:587",
           "op": "=",
           "text": "0",
           "value": "null"
@@ -1138,6 +1145,7 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:258",
           "expr": "sum(100 - (avg by (instance) (rate(node_cpu{mode=\"idle\"}[5m])) * 100)) / count(node_cpu{mode=\"idle\"})",
           "format": "time_series",
           "intervalFactor": 2,
@@ -1720,6 +1728,7 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:643",
           "expr": "count (kube_deployment_status_replicas_unavailable == 1)",
           "format": "time_series",
           "interval": "",
@@ -1768,8 +1777,8 @@
       "fill": 0,
       "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 24,
+        "h": 6,
+        "w": 19,
         "x": 0,
         "y": 23
       },
@@ -1851,6 +1860,90 @@
       ]
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "rgba(50, 172, 45, 0.97)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(245, 54, 54, 0.9)"
+      ],
+      "datasource": "prometheus",
+      "decimals": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 19,
+        "y": 23
+      },
+      "id": 33,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "$$hashKey": "object:690",
+          "expr": "sum(rate(apiserver_request_count{code=~\"5..\"}[1h]))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 600
+        }
+      ],
+      "thresholds": "5,10",
+      "title": "API Errors [1h]",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "0",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1862,10 +1955,10 @@
       "fill": 0,
       "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 24,
+        "h": 6,
+        "w": 19,
         "x": 0,
-        "y": 30
+        "y": 29
       },
       "height": "",
       "id": 31,
@@ -1896,6 +1989,7 @@
       "steppedLine": true,
       "targets": [
         {
+          "$$hashKey": "object:862",
           "expr": "max by (resource, verb) (rate(apiserver_request_latencies_summary_sum{verb!~\"WATCH|CONNECT\"}[5m]))  / \nmax by (resource, verb) (rate(apiserver_request_latencies_summary_count{verb!~\"WATCH|CONNECT\"}[5m]))\n> 10",
           "format": "time_series",
           "interval": "10s",
@@ -1909,7 +2003,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Kubernetes API Latencies",
+      "title": "Kubernetes API Latency",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -1945,6 +2039,90 @@
       ]
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "rgba(50, 172, 45, 0.97)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(245, 54, 54, 0.9)"
+      ],
+      "datasource": "prometheus",
+      "decimals": null,
+      "format": "ns",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 19,
+        "y": 29
+      },
+      "id": 32,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "$$hashKey": "object:972",
+          "expr": "max (rate(apiserver_request_latencies_summary_sum{verb!=\"WATCH\"}[1h]))  / \nmax (rate(apiserver_request_latencies_summary_count{verb!=\"WATCH\"}[1h]))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 600
+        }
+      ],
+      "thresholds": "100000,200000",
+      "title": "Max API Latency [1h]",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "0",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1959,7 +2137,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 35
       },
       "height": "",
       "id": 26,
