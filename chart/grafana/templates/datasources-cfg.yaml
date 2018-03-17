@@ -25,7 +25,7 @@ data:
     - name: prometheus
       type: prometheus
       access: proxy
-      url: https://prometheus:9090
+      url: {{ .Values.url }}
       isDefault: true
       editable: true
       version: 1

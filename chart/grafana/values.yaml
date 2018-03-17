@@ -29,4 +29,6 @@ affinity: {}
 
 user: admin
 password:
+
+url: http://prometheus:9090
 token:
